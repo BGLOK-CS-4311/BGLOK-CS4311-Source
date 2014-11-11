@@ -8,26 +8,19 @@ package Hardware;
  *
  */
 public abstract class Hardware {
+	
+	public Hardware() {
+		// TODO Auto-generated constructor stub
+		Hardware h;
+	}
 
-	public void set_User_Preference(){
+	public String setStatus(Hardware h){
 		
+		return "false";
 	}
 	
-	public void know_Preferences(){
+	public String sendDeviceStatus(Hardware h){
 		
-	}
-	
-	public void know_Details(){
-		
-	}
-	
-	public void know_status(){
-		
-	}
-	public void send_Details(){
-		
-	}
-	public void send_status(){
-		
+		return "false";
 	}
 }
