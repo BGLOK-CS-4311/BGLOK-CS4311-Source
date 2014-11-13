@@ -10,15 +10,31 @@ package Hardware;
 public class Security_Camera extends Hardware {
 
 	@Override
-	public String sendDeviceStatus(Hardware h) {
+	public void setDeviceStatus(Hardware hardware, String status) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		super.setDeviceStatus(hardware, status);
 	}
 	
 	@Override
-	public String setStatus(Hardware h) {
+	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
-		return super.setStatus(h);
+		super.sendDeviceStatus(hardware);
 	}
+	
+	/**
+	 * Opening refers to window or door, may specifiy later --john  
+	 */
+	private void knowAssociatedOpening(){
+		
+	}
+	
+	private void startRecording(){
+		
+	}
+	
+	private void stopRecording(){
+		
+	}
+	
 
 }

@@ -10,16 +10,23 @@ package Hardware;
 public class Power_Outlet extends Hardware {
 
 	@Override
-	public String sendDeviceStatus(Hardware h) {
+	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		super.sendDeviceStatus(hardware);
 	}
 	
 	@Override
-	public String setStatus(Hardware h) {
+	public String status(Hardware hardware, String s) {
 		// TODO Auto-generated method stub
-		return super.setStatus(h);
+		return super.status(hardware, s);
 	}
-
+	
+	/**
+	 * 
+	 */
+	private void knowOnOffStatus(){
+		
+	}
+	
 
 }

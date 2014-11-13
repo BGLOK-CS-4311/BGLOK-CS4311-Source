@@ -10,15 +10,34 @@ package Hardware;
 public class Motion_Sensor extends Sensor {
 
 	@Override
-	public String sendDeviceStatus(Hardware h) {
+	public Boolean activateSensor(Sensor sensor, String IPAddress) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		return super.activateSensor(sensor, IPAddress);
+	}
+
+	@Override
+	public Boolean deactivateSensor(Sensor sensor, String IPAddress) {
+		// TODO Auto-generated method stub
+		return super.deactivateSensor(sensor, IPAddress);
+	}
+
+	@Override
+	public void setDeviceStatus(Hardware hardware, String status) {
+		// TODO Auto-generated method stub
+		super.setDeviceStatus(hardware, status);
+	}
+
+	@Override
+	public void sendDeviceStatus(Hardware hardware) {
+		// TODO Auto-generated method stub
+		super.sendDeviceStatus(hardware);
+	}
+
+	private void detectMotion(){
+		
 	}
 	
-	@Override
-	public String setStatus(Hardware h) {
-		// TODO Auto-generated method stub
-		return super.setStatus(h);
-	}
+
+
 
 }

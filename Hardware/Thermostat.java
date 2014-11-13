@@ -10,20 +10,37 @@ package Hardware;
 public class Thermostat extends Hardware {
 
 	@Override
-public String setStatus(Hardware h) {
-	// TODO Auto-generated method stub
-	return super.setStatus(h);
-}
-
-@Override
-	public String sendDeviceStatus(Hardware h) {
+	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		super.sendDeviceStatus(hardware);
 	}
 	
-public int changeTemperature (int desiredTemp){
+	@Override
+	public void setDeviceStatus(Hardware hardware, String status) {
+		// TODO Auto-generated method stub
+		super.setDeviceStatus(hardware, status);
+	}
 	
-	return 0;
-}
+	private void knowReadings(){
+		
+	}
+	
+	private void knowContraints(){
+		
+	}
+	
+	/**
+	 * 
+	 * @param desiredTemp
+	 * @return
+	 * @requires value != currentTemp
+	 * @ensures \result == (tempIncreaseVal || tempDecreaseVal)
+	 */
+	public int changeTemperature(int desiredTemp){
+		
+		return 0;
+	}
+	
+	
 
 }

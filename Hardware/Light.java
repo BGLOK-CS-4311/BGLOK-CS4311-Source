@@ -10,15 +10,24 @@ package Hardware;
 public class Light extends Hardware {
 
 	@Override
-	public String sendDeviceStatus(Hardware h) {
+	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		super.sendDeviceStatus(hardware);
 	}
 	
 	@Override
-	public String setStatus(Hardware h) {
+	public void setDeviceStatus(Hardware hardware, String status) {
 		// TODO Auto-generated method stub
-		return super.setStatus(h);
+		super.setDeviceStatus(hardware, status);
 	}
+	
+	/**
+	 * 
+	 */
+	private void knowOnOffStatus(){
+		
+	}
+	
+
 
 }

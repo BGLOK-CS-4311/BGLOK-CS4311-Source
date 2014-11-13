@@ -10,15 +10,38 @@ package Hardware;
 public class Humidistat extends Hardware {
 
 	@Override
-	public String sendDeviceStatus(Hardware h) {
+	public void setDeviceStatus(Hardware hardware, String status) {
 		// TODO Auto-generated method stub
-		return super.sendDeviceStatus(h);
+		super.setDeviceStatus(hardware, status);
 	}
-		
+	
 	@Override
-	public String setStatus(Hardware h) {
+	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
-		return super.setStatus(h);
+		super.sendDeviceStatus(hardware);
+	}
+	
+	
+	/**
+	 * 
+	 * @param desiredTemp
+	 * @return
+	 * @requires value != currentHumidLevel
+	 * @ensures \result == (dehumidifyVal || humidifyVal)
+	 */
+	public int changeTemperature(int desiredTemp){
+	//this needs to be looked at
+	//the contract is wrong
+		
+		return 0;
+	}
+	
+	private void knowReadings(){
+		
+	}
+	
+	private void knowContraints(){
+		
 	}
 	
 	
