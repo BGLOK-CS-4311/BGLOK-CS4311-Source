@@ -9,17 +9,66 @@ package Hardware;
  */
 public abstract class Sensor extends Hardware {
 	
+	private int IPAddress;
+	private Boolean activate;
+	
+	/**
+	 * This will set the active status of a Sensor to either true or false
+	 * @param _activate
+	 */
+	public void setActivate(Boolean _activate){
+		activate = _activate;
+	}//end set activate
+	
+	/**
+	 * This will get the active status of a sensor, true or false
+	 * @return
+	 */
+	public Boolean getActivate(){
+		return activate;
+	}//end getActivate
+	
+	/**
+	 * setting address to ipaddress
+	 * @param address
+	 */
+	public void setIP(int address){
+		IPAddress = address;
+	}//end setIP
+	
+	/**
+	 * 
+	 * @return IP address
+	 */
+	public int getIP(){
+		return IPAddress;
+	}//end get IP
+	
+
+	/**
+	 * 
+	 */
+	private void sensorReading(){
+		//not sure how to code this yet --john
+	}
+	
+	/**
+	 * 
+	 */
 	@Override
 	public void sendDeviceStatus(Hardware hardware) {
 		// TODO Auto-generated method stub
 		super.sendDeviceStatus(hardware);
-	}
+	}//end sendDevice status
 	
+	/**
+	 * 
+	 */
 	@Override
 	public void setDeviceStatus(Hardware hardware, String status) {
 		// TODO Auto-generated method stub
 		super.setDeviceStatus(hardware, status);
-	}
+	}//end set device status
 	
 
 	//need to modifiy the sensor.ip address 
@@ -33,9 +82,9 @@ public abstract class Sensor extends Hardware {
 	 * @requires ipAddress.exists()
 	 * @ensures /result= True iff the sensor was successfully activated, else /result = false
 	 */
-	public Boolean activateSensor(Sensor sensor, String IPAddress){
+	public Boolean activateSensor(Sensor sensor, int IPAddress){
 		//check if IPAddress is null
-		if(IPAddress.equals("") || IPAddress == null || sensor.IPAddress == false){
+		if(IPAddress == 0 ){
 			//string is empty, throw error
 			System.out.println("The IP Address is invalid, please re-enter");
 			return false;
@@ -59,9 +108,9 @@ public abstract class Sensor extends Hardware {
 	 * @requires ipAddress.exists()
 	 * @ensures /result= True iff the sensor was successfully activated, else /result = false
 	 */
-	public Boolean deactivateSensor(Sensor sensor, String IPAddress){
+	public Boolean deactivateSensor(Sensor sensor, int IPAddress){
 		//check if IPAddress is null
-		if(IPAddress.equals("") || IPAddress == null || sensor.IPAddress == false){
+		if(IPAddress == 0 || sensor.IPAddress == 0){
 		//string is empty, throw error
 			System.out.println("The IP Address is invalid, please re-enter");
 			return false;
@@ -71,10 +120,6 @@ public abstract class Sensor extends Hardware {
 			return true;
 		}//end ip address exists else	
 		
-	}
+	}//end deactivate sensor
 	
-	
-	private void sensorReading(){
-		
-	}
 }

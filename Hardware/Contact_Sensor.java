@@ -10,13 +10,13 @@ package Hardware;
 public class Contact_Sensor extends Sensor {
 
 	@Override
-	public Boolean activateSensor(Sensor sensor, String IPAddress) {
+	public Boolean activateSensor(Sensor sensor, int IPAddress) {
 		// TODO Auto-generated method stub
 		return super.activateSensor(sensor, IPAddress);
 	}
 	
 	@Override
-	public Boolean deactivateSensor(Sensor sensor, String IPAddress) {
+	public Boolean deactivateSensor(Sensor sensor, int IPAddress) {
 		// TODO Auto-generated method stub
 		return super.deactivateSensor(sensor, IPAddress);
 	}

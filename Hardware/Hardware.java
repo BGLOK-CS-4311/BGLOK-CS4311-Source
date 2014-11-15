@@ -3,6 +3,9 @@
  */
 package Hardware;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * @author jvasquez9
  *
@@ -10,21 +13,16 @@ package Hardware;
 public abstract class Hardware {
 	
 	/**
-	 * IDEA: Implement hardware as a DS to assign multiple values to devices...John
-	 * 
-	//
-	//this needs to be worked on!!!!!
-	//
-	 * 
-	 * 
+	 * default private values. Will set these 
 	 */
-	public Hardware() {
-		// TODO Auto-generated constructor stub
-		Hardware hardware = new Hardware();
-		Hardware status = hardware.status();
-		Hardware address = hardware.address(); //ip address, need this from db?
-		Hardware registered = hardware.registered(); //will call the db to see if it already exsists
-	}
+	private ArrayList<String> hardwareList = new ArrayList<String>();//the list of all the hardware connected to the system
+	
+	private String hardware;
+	private String status;
+	private int ipaddress;
+	private String registered;
+
+	
 
 	/**
 	 * 
@@ -32,7 +30,7 @@ public abstract class Hardware {
 	 * @param status
 	 * @requires hardware!= null && hardware.exists()
 	 */
-	public void setDeviceStatus(Hardware hardware, String status){
+	public void setDeviceStatus(Hardware hardware, String newStatus){
 		//checking if hardware object is null
 		if(hardware == null){
 			System.out.println("The hardware does not exist within the system or cannot" +
@@ -47,7 +45,7 @@ public abstract class Hardware {
 		//passed both checks, we now update the status
 		else{
 			//updating the status
-			hardware.status = status;
+			hardware.status = newStatus;
 			
 			//print out a confirmation message stating status has updated
 			System.out.println("Status has been updated for device " + hardware.toString() );
@@ -70,11 +68,11 @@ public abstract class Hardware {
 		
 		//passed initial check, send hardware status
 		else{
-			String status = hardware.status;
+			String getStatus = hardware.status;
 			
 			//this sop is only temporary and will be changed once the rest of the 
 			//system has been implementd --John
-			System.out.println("Status of hardware is " + status);
+			System.out.println("Status of hardware is " + getStatus);
 		}//end else
 		
 	}//end send device status
@@ -90,15 +88,16 @@ public abstract class Hardware {
 		//checking if hardware object is already in system
 		//checking if hardware is already registered and if hardwares address
 		//has a valid address that is not 0
-		if(hardware.registered == true && hardware.address != 0){
-			System.out.println("The hardware you are trying to add already exists, please try again");
-		}//end if hardware null
+		for(int i = 0; i < hardwareList.size(); i++){
+			if(hardwareList.get(i).equals(hardware) ){
+				System.out.println("The hardware you are trying to add already exists, please try again");
+			}//end if hardware null
+		}
+			
 		
-		//hardware is not in system, add
-		else{
-			hardware.registerd = true; //registering it
-			hardware.address = new address();//need a new address
-			System.out.println("Added new hardware to system");
+		hardware.registerd = true; //registering it
+		hardware.address = new address();//need a new address
+		System.out.println("Added new hardware to system");
 		}//end else
 		
 		
