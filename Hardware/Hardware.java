@@ -22,6 +22,10 @@ public abstract class Hardware {
 	private int ipaddress;
 	private String registered;
 
+	private boolean registerd;
+
+	private address ipaddress;
+
 	
 
 	/**
@@ -96,7 +100,7 @@ public abstract class Hardware {
 			
 		
 		hardware.registerd = true; //registering it
-		hardware.address = new address();//need a new address
+		hardware.ipaddress = ipaddress++;//need a new address
 		System.out.println("Added new hardware to system");
 		}//end else
 		

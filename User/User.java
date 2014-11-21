@@ -1,4 +1,6 @@
 package User;
+
+import DataRepository.Database_Accesser;
 /**
  * 
  */
@@ -8,24 +10,47 @@ package User;
  *
  */
 public abstract class User {
+	
+	private String username;
+	private int pin;
+	private String currentUser;
+	
+	//need to access database so we are creating 
+	//an object to do so
+	Database_Accesser dblink = new Database_Accesser();
+	
 
-	public void know_Username(){
-		
-	}
+	private void know_Username(){
+		//gets the user name and sets that to current 
+		//user, will need to pix this --john
+		currentUser = username;
+	}//end know username
 	
-	public void know_password(){
-		
-	}
+	private void know_pin(){
+
+		dblink.retrieveData(tableName, columnName, value);
+	}//end know pin
 	
-	public void know_pin(){
-		
-	}
+	private void verify_Login(){
+		dblink.retrieveData(tableName, columnName, value);
+	}//end verify login
 	
-	public void set_User_Info(){
-		
-	}
+	public String getUser(String _username){
+		return username = _username;
+	}//end get user
 	
-	public void verify_Login(){
-		
-	}
+	/**
+	 * **Need to double check contract, info is not 
+	 * completely accurate --john
+	 * @param user
+	 * 
+	 */
+	public void send_User_Info(String user){
+		//the result of our db query
+		String results; 
+		//getting the user name from the db
+		results = dblink.retrieveData("user","all_users", username );
+		System.out.println("Username information " + results);
+	}//end send_User_Info
+	
 }
