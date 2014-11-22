@@ -14,6 +14,7 @@ public abstract class User {
 	private String username;
 	private int pin;
 	private String currentUser;
+	private String password; 
 	
 	//need to access database so we are creating 
 	//an object to do so
@@ -27,12 +28,14 @@ public abstract class User {
 	}//end know username
 	
 	private void know_pin(){
-
-		dblink.retrieveData(tableName, columnName, value);
+		String pinString = Integer.toString(pin);
+		dblink.retrieveData("User", "pin", pinString);
 	}//end know pin
 	
 	private void verify_Login(){
-		dblink.retrieveData(tableName, columnName, value);
+		String password = "";
+		dblink.retrieveData("User", "Username", username);
+		dblink.retrieveData("User", "Username", password);
 	}//end verify login
 	
 	public String getUser(String _username){

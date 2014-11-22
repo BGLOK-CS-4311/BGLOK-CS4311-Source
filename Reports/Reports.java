@@ -25,7 +25,7 @@ public abstract class Reports {
 		String results;
 		//this will call the database, pass in values that we need
 		//for the query, and return it as a string
-		results = dbaccess.get("report", reportType, startDate, endDate);
+		results = dbaccess.retrieveData(tableName, columnName, value)("report", reportType, startDate, endDate);
 		System.out.println(results + "\n");
 		//getting the results, printing it; will change once
 		//jar has been implemented --john
@@ -35,15 +35,15 @@ public abstract class Reports {
 	 * 
 	 * @param r
 	 */
-	private void getReportInfo(Report r){
+	private void getReportInfo(Reports r){
 		
-		return r;
+		
 	}
 	
 	/**
 	 * 
 	 */
-	private void knowDateInterval(Report r){
+	private void knowDateInterval(Reports r){
 		
 	}
 }
