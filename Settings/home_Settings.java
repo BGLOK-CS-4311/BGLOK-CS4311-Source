@@ -1,4 +1,6 @@
 package Settings;
+
+import DataRepository.Database_Accesser;
 /**
  * 
  */
@@ -9,14 +11,20 @@ package Settings;
  */
 public class home_Settings extends Settings{
 
+	Database_Accesser dbQuery = new Database_Accesser();
+	
 	/**
 	 * 
 	 * @return
 	 * @ensures \result returns a String array of all the device settings, 
 	 * 	each column representing the IP 	address, type of device, and location. 
 	 */
-	public String[][] sendDeviceSettings() {
-		String [][] newSettings;
+	public String[][] sendDeviceSettings(String device) {
+		String [][] newSettings = new String[4][4];
+		newSettings[0][1] = dbQuery.retrieveData("Hardware", "ipAddress", device);
+		newSettings[0][2] = dbQuery.retrieveData("Hardware", "name", device);
+		newSettings[0][3] = dbQuery.retrieveData("Hardware", "type", device);
+		newSettings[0][4] = dbQuery.retrieveData("Hardware", "status", device);
 		return newSettings;
 	}//end send device settings
 	

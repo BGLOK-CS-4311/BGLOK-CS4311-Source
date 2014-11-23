@@ -23,19 +23,10 @@ public abstract class Settings {
 	 * @ensures \result returns a String array of all the device settings, 
 	 * each column representing the IP 	address, type of device, and location. 
 	 */
-	public String [][] sendDeviceSettings(String _column, String _value){
-		String [][] newDeviceSettings;
+	public String [][] sendDeviceSettings(){
+		String [][] temp = null;
 		
-		//setting private strings to inputs
-		columnName = _column;
-		value = _value;
-		
-		//creating a new query
-		Database_Accesser newQuery = new Database_Accesser();
-		
-		newQuery.retrieveData("Hardware", columnName, value);
-		
-		return newDeviceSettings;
+		return null;
 	}
 	
 	public void know_Settings(){
