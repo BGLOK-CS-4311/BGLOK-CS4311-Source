@@ -20,11 +20,7 @@ public abstract class Hardware {
 	private String hardware;
 	private String status;
 	private int ipaddress;
-	private String registered;
-
 	private boolean registerd;
-
-	private address ipaddress;
 
 	
 
@@ -101,10 +97,8 @@ public abstract class Hardware {
 		
 		hardware.registerd = true; //registering it
 		hardware.ipaddress = ipaddress++;//need a new address
-		System.out.println("Added new hardware to system");
-		}//end else
-		
-		
+		System.out.println("Added new hardware to system");		
+
 	}//end add device
 	
 	
@@ -118,9 +112,9 @@ public abstract class Hardware {
 		//checking if hardware object is already in system
 		//checking if hardware is already registered and if hardwares address
 		//has a valid address that is not 0
-		if(hardware.registered == true && hardware.address != 0){
-			hardware.registered = false; //unregistering it
-			hardware.address = 0; //getting rid of the address associated with device
+		if(hardware.registerd == true && hardware.ipaddress != 0){
+			hardware.registerd = false; //unregistering it
+			hardware.ipaddress = 0; //getting rid of the address associated with device
 		}//end if hardware null
 		
 		//if hardware object is not in system
@@ -144,14 +138,14 @@ public abstract class Hardware {
 			//throw error
 		}
 		else{
-			if(hardware == "connected"){
+			if(hardware.status == "connected"){
 				status = "enabled";
 			}//end connected if
 			else{
 				status = "disabled";
 			}//end else connect
 		}//end else
-		
+		return status;
 	}//end status
 	
 	
