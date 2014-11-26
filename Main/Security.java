@@ -1,14 +1,4 @@
-/**
- * @author jvasquez9
- * @author Flor
- * 
- */
 package Main;
-
-/**
- * 
- *
- */
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -17,6 +7,10 @@ public class Security {
 	private boolean isAlarmOn;
 	private boolean isAlarmTriggered;
 	private static final int TIMER = 15;	//Seconds
+	
+	//CONTRACT
+	public void notifyEmergancyAuthorites(String phoneNumber, String ownersName, String address){
+	}
 	
 	/** Getter to know the security alarm status */
 	boolean getCurrentAlarmStatus(Boolean alarmStatus){
@@ -69,9 +63,6 @@ public class Security {
 		//Get phone number
 		//Get owners name
 		//Get home address
-	}
-	
-	public void notifyEmergancyAuthorites(String phoneNumber, String ownersName, String address){	
 	}
 	
 	/** Once an intrusion is detected this method starts a timer to allow the user to

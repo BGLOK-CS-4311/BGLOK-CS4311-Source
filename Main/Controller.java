@@ -1,10 +1,9 @@
-/**
- * @author jvasquez9
- * @modified Flor
+/** @author jvazquez9
+ * 
  */
-
 package Main;
 import Hardware.Hardware;
+import Main.Commands;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,18 +13,20 @@ import javax.swing.JButton;
 public class Controller implements Commands{
 	private GUI gui;
 	//Model classes variables go here
-	//Security security;
+	private Security security;
+	private Hardware hardware;
+
 	private boolean isRunning; 			//variable to know if sim is currently running
 	private boolean isSet;
 	private boolean isPanicking;
 	
 	//CONTRACT
-	public String updateDeviceInfo(Hardware device, String info){
+	public String sendUpdatedDeviceInfo(Hardware device){		
 		return "false";
 	}
 	
 	//CONTRACT
-	public String sendUpdatedDeviceInfo(Hardware device){	
+	public String updateDeviceInfo(Hardware device, String info){	
 		return "false";
 	}
 	

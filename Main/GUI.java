@@ -1,6 +1,8 @@
-/* Author: Flor Larsen
- * Created Nov 21, 2014
+/* Created Nov 21, 2014
  * Displays the GUI componenets for the DigitalHome simulator */
+
+package Main;
+import Main.Commands;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -8,7 +10,6 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
-
 import javax.swing.*;
 
 public class GUI extends JFrame implements Commands{
@@ -23,14 +24,13 @@ public class GUI extends JFrame implements Commands{
 	private JButton startStopB;
 	private JButton setB;
 	
-	
 	//CONTRACT
-	public int userInput(GUI deviceType, int value){	
+	public int panicButton(Security status){		
 		return 0;
 	}
 	
-	// CONTRACT 
-	public int panicButton(Security status){
+	//CONTRACT
+	public int userInput(GUI deviceType, int value){		
 		return 0;
 	}
 	
