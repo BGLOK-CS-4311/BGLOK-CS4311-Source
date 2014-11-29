@@ -8,7 +8,7 @@ import DataRepository.Database_Accesser;
 /**
  * @author jvasquez9
  * NOTE: Protocols are not clear on this
- * class so I will have to fix them in order to get the system working properlu --john
+ * class so I will have to fix them in order to get the system working properly --john
  */
 public abstract class Reports {
 
@@ -25,7 +25,7 @@ public abstract class Reports {
 		String results;
 		//this will call the database, pass in values that we need
 		//for the query, and return it as a string
-		results = dbaccess.retrieveData("Report", columnName, value);
+		results = dbaccess.retrieveData("Report", reportType, value);
 		System.out.println(results + "\n");
 		//getting the results, printing it; will change once
 		//jar has been implemented --john

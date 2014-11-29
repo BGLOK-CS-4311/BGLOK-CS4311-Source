@@ -18,4 +18,9 @@ public class Database_Accesser {
 		return "false";
 	}
 
+	public String addData(String string, String string2, String iPAddress) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

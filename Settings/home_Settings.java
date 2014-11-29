@@ -25,6 +25,23 @@ public class home_Settings extends Settings{
 		newSettings[0][2] = dbQuery.retrieveData("Hardware", "name", device);
 		newSettings[0][3] = dbQuery.retrieveData("Hardware", "type", device);
 		newSettings[0][4] = dbQuery.retrieveData("Hardware", "status", device);
+		
+		
+		//checking if any of the queries returned false in any way
+		if(newSettings[0][1].equals("Error")){
+			System.out.println("Device IPAddress does not exsist, an error has occured");
+		}//end ip error
+		
+		else if(newSettings[0][2].equals("Error")){
+			System.out.println("Device name does not exsist, an error has occured");
+		}
+		else if(newSettings[0][3].equals("Error")){
+			System.out.println("Device type does not exsist, an error has occured");
+		}
+		else if(newSettings[0][4].equals("Error")){
+			System.out.println("Device status does not exsist, an error has occured");
+		}
+		
 		return newSettings;
 	}//end send device settings
 	
@@ -47,12 +64,19 @@ public class home_Settings extends Settings{
 	 * @requires deviceIP != null
 	 * @requires deviceIP exists in the database
 	 * @ensures \result == True iff device was successfully removed, 
-	 * 	else \result = False if errors were 			encountered
+	 * 	else \result = False if errors were encountered
 	 */
 	public Boolean removeDevice(String deviceIP){
-	
-		return false;
-	}
+		String results;
+		results = dbQuery.removeData("Hardware", "IPAddress", deviceIP );
+		
+		if(results.equals("Deleted")){
+			return true;
+		}
+		else{
+			return false;
+		}
+	}//end remove Device
 	
 	
 	/**
@@ -63,11 +87,45 @@ public class home_Settings extends Settings{
 	 * @return
 	 * @requires (IPAddress != null) && (type != null) && (location != null)
 	 * @ensures \result == True iff device was successfully removed, 
-	 * 	else \result = False if errors were 			encountered.
+	 * 	else \result = False if errors were encountered.
 	 */
-	public Boolean addDevice(String IPAddress, String type, String location){
+	public Boolean addDevice(String IPAddress, String type, String name, String status){
+		String ipResult = dbQuery.addData("Hardware", "IPAddress", IPAddress);
+		String typeResult = dbQuery.addData("Hardware", "Type", type);
+		String nameResult = dbQuery.addData("Hardware", "Name", name);
+		String statusResult = dbQuery.addData("Hardware", "Status", status);
 		
-		return false;
-	}
+		/**
+		 * Checks if all additions have passed, else, we return a false
+		 */
+		if(ipResult.equals("Added") && typeResult.equals("Added") && nameResult.equals("Added")
+				&& statusResult.equals("Added")){
+			return true;
+		}//end all if
+		
+		else if(ipResult.equals("Error")){
+			System.out.println("IP Result error failed");
+			return false;
+		}//end else if ip
+		
+		else if(typeResult.equals("Error")){
+			System.out.println("Type Result error failed");
+			return false;
+		}//end else if type
+		
+		else if(nameResult.equals("Error")){
+			System.out.println("IP Result error failed");
+			return false;
+		}//end name result else if
+		
+		else if(statusResult.equals("Error")){
+			System.out.println("IP Result error failed");
+			return false;
+		}//end else if status
+		
+		else{
+			return false;
+		}
+	}//end add device
 
 }
