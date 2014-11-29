@@ -25,7 +25,7 @@ public abstract class Reports {
 		String results;
 		//this will call the database, pass in values that we need
 		//for the query, and return it as a string
-		results = dbaccess.retrieveData(tableName, columnName, value)("report", reportType, startDate, endDate);
+		results = dbaccess.retrieveData("Report", columnName, value);
 		System.out.println(results + "\n");
 		//getting the results, printing it; will change once
 		//jar has been implemented --john

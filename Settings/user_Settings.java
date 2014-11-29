@@ -92,7 +92,7 @@ public class user_Settings extends Settings {
 	 * 	else \result = false if the user couldn’t be removed.  
 	 */
 	public Boolean removeUser(String username){
-		dbQuery.retrieveData(tableName, columnName, value)
+		dbQuery.deleteData("User", "username", username);
 	}//end remove user
 	
 	
@@ -105,7 +105,7 @@ public class user_Settings extends Settings {
 	 * 	else \result = false if the user couldn’t be added.
 	 */
 	public Boolean addUser(String user){
-		
+		dbQuery.insertData("User", "username", user);		
 	}//end add user
 	
 	/**
@@ -117,7 +117,7 @@ public class user_Settings extends Settings {
 	 * 	else \result = false if the user account details couldn’t be changed. 
 	 */
 	public Boolean modifyUser(String user){
-		
+		dbQuery.updateData("User", "username", user);	
 	}//end modify user
 
 	

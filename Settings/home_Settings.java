@@ -36,6 +36,7 @@ public class home_Settings extends Settings{
 	 */
 	public String sendDegreePreference(){
 		
+		return "true";
 	}//end send degree preference
 	
 	
