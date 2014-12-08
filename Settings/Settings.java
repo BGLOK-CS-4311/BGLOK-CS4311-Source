@@ -16,7 +16,8 @@ public abstract class Settings {
 	//or at least taken from somewhere
 	private String columnName;
 	private String value;
-	
+	Database_Accesser dbQuery = new Database_Accesser();
+
 	/**
 	 * 
 	 * @return
@@ -24,9 +25,19 @@ public abstract class Settings {
 	 * each column representing the IP 	address, type of device, and location. 
 	 */
 	public String [][] sendDeviceSettings(){
-		String [][] temp = null;
+		String [][] temp;
+
+		String ipResults += dbQuery.retrieveData("Hardware", "IPAddress", "*");//get all hardware that has an ip address
+		String typeResults += dbQuery.retrieveData("Hardware", "Type", "*");//get all hardware types
+		String locationResults += dbQuery.retrieveData("Hardware", "Location", "*");//get all hardware that has a locaiton
 		
-		return null;
+
+		//need to test this, doesn't look correct
+		temp[0][] = ipResults.split(",");
+		temp[1][] = typeResults.split(",");
+		temp[2][] = locationResults.split(",");
+
+		return temp;
 	}
 	
 	public void know_Settings(){

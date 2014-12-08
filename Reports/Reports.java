@@ -10,6 +10,9 @@ import DataRepository.Database_Accesser;
  * NOTE: Protocols are not clear on this
  * class so I will have to fix them in order to get the system working properly --john
  */
+
+Database_Accesser dbaccess = new Database_Accesser();
+
 public abstract class Reports {
 
 	/**
@@ -20,7 +23,7 @@ public abstract class Reports {
 	 */
 	public void displayReport(String reportType, String startDate, String endDate){
 	//need to create an object for the db accessor class
-		Database_Accesser dbaccess = new Database_Accesser();
+		
 		//results for the db query results
 		String results;
 		//this will call the database, pass in values that we need
@@ -36,7 +39,16 @@ public abstract class Reports {
 	 * @param r
 	 */
 	private void getReportInfo(Reports r){
-		
+		//check if report is null
+		if(r == null){
+			System.out.println("Report can not be empty, please try again");
+		}
+		else{
+			//gets all info associated with report
+			String results = dbaccess.retireveData("Reports", "Info", r);
+			System.out.println("Info for report: " + results);
+
+		}
 		
 	}
 	
@@ -44,6 +56,8 @@ public abstract class Reports {
 	 * 
 	 */
 	private void knowDateInterval(Reports r){
-		
+		//need to know if reports will have all of this on the database
+
+		//if not, need to add it -john
 	}
 }

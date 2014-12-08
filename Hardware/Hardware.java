@@ -21,6 +21,8 @@ public abstract class Hardware {
 	private String status;
 	private int ipaddress;
 	private boolean registerd;
+	private String failurel
+	Database_Accessor dbQuery = new Database_Accessor();
 
 	
 
@@ -147,26 +149,36 @@ public abstract class Hardware {
 		}//end else
 		return status;
 	}//end status
-	
-	
-	
-//------------------------------------------------------------------------------------------	
-	
-	/**
-	 * WILL WORK ON THESE LATER!!!  JOHN
-	 */
-	
-	
-	
+
+
 	public void userCommandPref(){
+		//no idea what this is supposed to
+		//be doing, need clarrification
+		//-john
 		
 	}
 	
 	public void knowIPAddress(Hardware harware){
-		
+		//check if hardware object is null
+		if(hardware == null){
+			System.out.println("Hardware Item must be known, please retry");
+		}
+		else{
+			//getting the ip address of the hardware object
+			String results = dbQuery.retrieveDate("Hardware", "IPAddress", hardware.ipaddress);
+			System.out.println("IPAddress is " + results);
+		}
+
 	}
 	
 	public void logDeviceFailure(Hardware hardware){
-		
+		//check if hardware object is null
+		if(hardware == null){
+			System.out.println("Hardware Item must be known, please retry");
+		}//end if
+		else{
+			String results = dbQuery.storeData("Hardware","Failures", hardware.failure);
+			System.out.println("Failure has been logged");
+		}//end else
 	}
 }
