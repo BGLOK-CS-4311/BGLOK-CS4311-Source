@@ -11,13 +11,17 @@ import java.util.Date;
  */
 public class Failures extends Reports{
 
+Database_Accessor dbQuery = new Database_Accessor();
+
 	/**
 	 * 
 	 */
 	@Override
 	public void displayReport(String reportType, String startDate,
 			String endDate) {
-		// TODO Auto-generated method stub
+		String date = startDate + " " + endDate;
+		String results = dbQuery.retireveData = ("Reports", reportType, date);
+		System.out.println("Report is here: " + results );
 		super.displayReport(reportType, startDate, endDate);
 	}
 	

@@ -18,7 +18,9 @@ public class Alarms_Triggered extends Reports{
 	@Override
 	public void displayReport(String reportType, String startDate,
 			String endDate) {
-		// TODO Auto-generated method stub
+			String date = startDate + " " + endDate;
+		String results = dbQuery.retireveData = ("Reports", reportType, date);
+		System.out.println("Report is here: " + results );
 		super.displayReport(reportType, startDate, endDate);
 	}
 	

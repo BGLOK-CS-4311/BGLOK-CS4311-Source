@@ -41,7 +41,8 @@ public abstract class Settings {
 	}
 	
 	public void know_Settings(){
-		
+		//unsure of which settings we need to know. just getting all of them right now
+		String settings = dbQuery.retrieveData("Settings", "Home","*");
 	}
 
 }
