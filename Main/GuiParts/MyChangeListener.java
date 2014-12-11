@@ -12,6 +12,7 @@ public class MyChangeListener implements ChangeListener {
 		if (!source.getValueIsAdjusting()) {
 			int speed = (int)source.getValue();
 			Controller.setSpeed(speed);
+			SimClock.setSpeed(speed);
 			System.out.println(speed);
 		}
 	}

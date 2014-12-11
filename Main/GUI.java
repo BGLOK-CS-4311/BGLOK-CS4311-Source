@@ -10,11 +10,12 @@ import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
-
 import java.io.File;
 import java.io.IOException;
-
+import java.io.InputStream;
 import java.util.Hashtable;
+
+import javafx.scene.layout.Border;
 
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
@@ -28,25 +29,31 @@ import javax.swing.JSlider;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
+import Main.GuiParts.ClockDisplay;
 import Main.GuiParts.DatePicker;
+import Main.GuiParts.HomePanel;
 import Main.GuiParts.MyActionListener;
 import Main.GuiParts.MyChangeListener;
 import Main.GuiParts.TimePicker;
 
 public class GUI extends JFrame implements Commands{
 	private static final long serialVersionUID = 1L;
-	private JFrame frame = new JFrame("DigitalHome Simulator");
+	private static JFrame frame = new JFrame("DigitalHome Simulator");
 
 	private JPanel panel =  new JPanel();;
 	private JPanel homePanel = new JPanel();
 	private JPanel ctrlPanel = new JPanel();
 
-	private JButton startStopB = new JButton(START);
+	private JButton startB = new JButton(START);
 	private JSlider speedS = new JSlider(MIN,MAX,INIT);
 	private DatePicker cal = new DatePicker();
+	
 	TimePicker timePicker = new TimePicker();
+	ClockDisplay clock;
 		
 	public GUI() {
+		clock = new ClockDisplay(Controller.getClock());
+		
 		ctrlPanelSetup();
 		homePanelSetup();
 		panelSetup();		//Call second to last
@@ -79,38 +86,50 @@ public class GUI extends JFrame implements Commands{
 		
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);	//Comment out during debugging
-		frame.setSize(new Dimension(700, 400));				//Un-comment during debugging
+		frame.setSize(new Dimension(800, 400));				//Un-comment during debugging
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
 
 	private void panelSetup() {
-		panel.setVisible(true);
 		panel.setLayout(new BorderLayout());	
+		panel.setVisible(true);
 	}
 		
 	private void ctrlPanelSetup() {
 		//ctrlPanel.setLayout(new BoxLayout(ctrlPanel, BoxLayout.X_AXIS));
-		
 		//datePanel.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		
 		JPanel datePanel = new JPanel();
 		datePanel.setBorder(BorderFactory.createTitledBorder(DATE_INS));
 		datePanel.setLayout(new BoxLayout(datePanel, BoxLayout.PAGE_AXIS));
-		datePanel.add(cal.getCalendar(), Component.BOTTOM_ALIGNMENT);
+		
+		datePanel.add(cal.get(), Component.BOTTOM_ALIGNMENT);
 		datePanel.add(timePicker.get(), Component.BOTTOM_ALIGNMENT);
 		ctrlPanel.add(datePanel);
 		
-		ctrlPanel.add(sliderSetup());
+		JPanel sliderPanel = new JPanel();
+		sliderPanel.add(sliderSetup());
+		sliderPanel.setBorder(BorderFactory.createTitledBorder(SLIDER_INS));
+		ctrlPanel.add(sliderPanel);
 		
-		startStopB.addActionListener(new MyActionListener());
-		startStopB.setForeground(Color.GREEN);
-		startStopB.setIcon(addImageIcon(START_IMG));
-		startStopB.setPreferredSize(new Dimension(85, 26));
-		ctrlPanel.add(startStopB);
+		
+		//Clock Panel
+		JPanel clockP = clock.get();
+		clockP.setBorder(BorderFactory.createTitledBorder(CLOCK));
+		clockP.setLayout(new BoxLayout(clockP, BoxLayout.PAGE_AXIS));
+		
+		startB.addActionListener(new MyActionListener());
+		startB.setForeground(Color.BLACK);
+		startB.setIcon(addImageIcon(START_IMG));
+		startB.setPreferredSize(new Dimension(90, 26));
+		
+		clockP.add(new JLabel(""), Component.BOTTOM_ALIGNMENT);
+		clockP.add(startB, Component.BOTTOM_ALIGNMENT);
+		
+		ctrlPanel.add(clockP);
 	}
 	
-	JPanel sliderSetup() {
+	JSlider sliderSetup() {
 		Hashtable<Integer, JLabel> lbls = new Hashtable<Integer, JLabel>();
 		lbls.put(new Integer(MIN), new JLabel(SECS));
 		lbls.put(new Integer(1),new JLabel(MINS));
@@ -124,25 +143,22 @@ public class GUI extends JFrame implements Commands{
 		speedS.setPaintTicks(true);
 		speedS.setPaintLabels(true);
 		
-		JPanel sliderPanel = new JPanel();
-		sliderPanel.add(speedS);
-		sliderPanel.setBorder(BorderFactory.createTitledBorder(SLIDER_INS));
-		return sliderPanel;
+		return speedS;
 	}
 	
 	/**
-	 * Toggle start/stop timer button text 
+	 * Toggle start/pause timer button text 
 	 * @return 
 	 * */
 	public void showStartB(boolean val) {
 		if(val == true){
-			startStopB.setText(START);
-			startStopB.setForeground(Color.GREEN);
-			startStopB.setIcon(addImageIcon(START_IMG));
+			startB.setText(START);
+			startB.setForeground(Color.BLACK);
+			startB.setIcon(addImageIcon(START_IMG));
 		} else if (val == false) {
-			startStopB.setText(STOP);
-			startStopB.setForeground(Color.RED);
-			startStopB.setIcon(addImageIcon(STOP_IMG));
+			startB.setText(PAUSE);
+			startB.setForeground(Color.BLACK);
+			startB.setIcon(addImageIcon(PAUSE_IMG));
 		}
 	}
 	
@@ -151,6 +167,8 @@ public class GUI extends JFrame implements Commands{
 		homePanel.setBackground(Color.WHITE);
 		homePanel.setVisible(true);
 		homePanel.add(addImage(FLOORPLAN));
+		//homeInfo = HomePanel.get();
+		//homePanel.add(homeInfo);
 	}
 	
 	/**
@@ -160,8 +178,9 @@ public class GUI extends JFrame implements Commands{
 	 * */
 	JLabel addImage(String imgName) {
 		BufferedImage img = null;
+		InputStream res = GUI.class.getResourceAsStream(imgName);
 		try {
-			img = ImageIO.read(new File(imgName));
+			img = ImageIO.read(res);
 		} catch (IOException e) {
 			System.out.println("ERROR: Could not load image"+ imgName);
 			return null;
@@ -177,14 +196,22 @@ public class GUI extends JFrame implements Commands{
 	 * */
 	ImageIcon addImageIcon(String imgName) {
 		BufferedImage img = null;
+		InputStream res = GUI.class.getResourceAsStream(imgName);
 		try {
-			img = ImageIO.read(new File(imgName));
+			img = ImageIO.read(res);
 		} catch (IOException e) {
-			System.out.println("ERROR: Could not load image"+ imgName);
+			System.out.println("ERROR: Could not load image "+ imgName);
 			e.printStackTrace();
-			return null;
 		}
 		return new ImageIcon(img);
+	}
+	
+	/**
+	 * Getter method to return this frame object
+	 * @return JFrame the application frame
+	 */
+	public static JFrame getFrame(){
+		return frame;
 	}
 	
 	class CompListener implements ComponentListener {

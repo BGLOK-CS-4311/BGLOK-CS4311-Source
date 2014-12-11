@@ -1,6 +1,7 @@
 package Main.GuiParts;    
 
-import java.text.DateFormat;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -13,19 +14,20 @@ import javax.swing.event.ChangeListener;
 
 import org.jdatepicker.impl.JDatePanelImpl;
 import org.jdatepicker.impl.JDatePickerImpl;
-import org.jdatepicker.impl.UtilDateModel;
+import org.jdatepicker.impl.UtilCalendarModel;
 
-
-public class DatePicker implements ChangeListener{
-	UtilDateModel model;
-	JDatePanelImpl panel;
-	JDatePickerImpl picker;
+public class DatePicker 
+	extends CalendarSelection 
+	implements ChangeListener, ActionListener{
+	
+	private static UtilCalendarModel model;
+	static JDatePanelImpl panel;
+	static JDatePickerImpl picker;
 	Date current;
 	
 	public DatePicker(){		
-		model = new UtilDateModel();
+		model = new UtilCalendarModel();
 		model.setSelected(true);
-		model.addChangeListener(this);
 
 		Properties p = new Properties();
 		p.put("text.today", "Today");
@@ -56,19 +58,42 @@ public class DatePicker implements ChangeListener{
 	    }
 	}
 	
-	public JDatePickerImpl getCalendar(){
+	/** Returns this object for displaying */
+	public JDatePickerImpl get(){
 		return picker;
 	}
 	
-	public Object getSelection(){
-		Date selectedDate = (Date) picker.getModel().getValue();
-		DateFormat formatD = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");	//Easier for system to read.
-		String selection = formatD.format(selectedDate);
-		return selection;
+	/** Resets the Date Picker to have the current today's date. */
+	public static void setToday(){
+		Calendar today = Calendar.getInstance();
+		model.setDate(today.get(Calendar.YEAR), today.get(Calendar.MONTH), today.get(Calendar.DATE));
+	}
+	
+	/** Sets the current values into the calendar object */
+	public static void setSelection(){
+		//calendar = (Calendar) picker.getModel().getValue();
+		int year = model.getYear();
+		int month = model.getMonth();
+		int day = model.getDay();
+		
+		calendar.set(Calendar.YEAR, year);
+		calendar.set(Calendar.MONTH, month);
+		calendar.set(Calendar.DATE, day);
+	}
+	
+	public Calendar getSelection(){
+		setSelection();
+		return calendar;
 	}
 
 	@Override
 	public void stateChanged(ChangeEvent e) {
-		System.out.println(getSelection());
+		setSelection();
+		System.out.println(calendar.getTime());
+	}
+
+	public void actionPerformed(ActionEvent e) {
+		setSelection();
+		System.out.println(calendar.getTime());
 	}
 }
