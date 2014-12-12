@@ -11,10 +11,11 @@ import DataRepository.Database_Accesser;
  * class so I will have to fix them in order to get the system working properly --john
  */
 
-Database_Accesser dbaccess = new Database_Accesser();
+
 
 public abstract class Reports {
-
+	Database_Accesser dbaccess = new Database_Accesser();
+	
 	/**
 	 * 
 	 * @param reportType
@@ -26,6 +27,8 @@ public abstract class Reports {
 		
 		//results for the db query results
 		String results;
+	
+		String value = startDate + " " + endDate; 
 		//this will call the database, pass in values that we need
 		//for the query, and return it as a string
 		results = dbaccess.retrieveData("Report", reportType, value);
@@ -38,14 +41,15 @@ public abstract class Reports {
 	 * 
 	 * @param r
 	 */
-	private void getReportInfo(Reports r){
+	private void getReportInfo(String r){
+		String report = r;
 		//check if report is null
 		if(r == null){
 			System.out.println("Report can not be empty, please try again");
 		}
 		else{
 			//gets all info associated with report
-			String results = dbaccess.retireveData("Reports", "Info", r);
+			String results = dbaccess.retrieveData("Reports", "Info", r);
 			System.out.println("Info for report: " + results);
 
 		}

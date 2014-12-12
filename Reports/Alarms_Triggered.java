@@ -5,12 +5,15 @@ package Reports;
 
 import java.util.Date;
 
+import DataRepository.Database_Accesser;
+
 /**
  * @author jvasquez9
  *
  */
 public class Alarms_Triggered extends Reports{
 
+	Database_Accesser dbQuery = new Database_Accesser();
 
 	/**
 	 * 
@@ -19,7 +22,8 @@ public class Alarms_Triggered extends Reports{
 	public void displayReport(String reportType, String startDate,
 			String endDate) {
 			String date = startDate + " " + endDate;
-		String results = dbQuery.retireveData = ("Reports", reportType, date);
+			String results;
+		results = dbQuery.retrieveData("Reports", reportType, date);
 		System.out.println("Report is here: " + results );
 		super.displayReport(reportType, startDate, endDate);
 	}

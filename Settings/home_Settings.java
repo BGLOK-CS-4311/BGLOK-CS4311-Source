@@ -68,7 +68,7 @@ public class home_Settings extends Settings{
 	 */
 	public Boolean removeDevice(String deviceIP){
 		String results;
-		results = dbQuery.removeData("Hardware", "IPAddress", deviceIP );
+		results = dbQuery.deleteData("Hardware", "IPAddress", deviceIP );
 		
 		if(results.equals("Deleted")){
 			return true;

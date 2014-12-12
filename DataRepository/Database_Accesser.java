@@ -106,7 +106,7 @@ public class Database_Accesser {
 		return "false";
 	}
 	
-	public void deleteData(String tableName, String columnName, String value){
+	public String deleteData(String tableName, String columnName, String value){
 		
 	}
 
