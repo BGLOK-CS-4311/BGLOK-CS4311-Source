@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+
+<Home>
+	<room rName = "Family Room" >
+		<device Dname="Thermostat">Thermostat</device>
+		<device Dname="Humidistat">Humidistat</device>
+		<device Dname="Contact">Contact_Sensor</device>
+		<device Dname="Motion">Motion_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Dining Room">
+		<device Dname="Thermostat">Thermostat</device>
+		<device Dname="Humidistat">Humidistat</device>
+		<device Dname="Contact1">Contact_Sensor</device>
+		<device Dname="Contact2">Contact_Sensor</device>
+		<device Dname="Motion">Motion_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Bedroom1">
+		<device Dname="Thermostat">Thermostat</device>
+		<device Dname="Humidistat">Humidistat</device>
+		<device Dname="Contact1">Contact_Sensor</device>
+		<device Dname="Contact2">Contact_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Bedroom2">
+		<device Dname="Thermostat">Thermostat</device>
+		<device Dname="Humidistat">Humidistat</device>
+		<device Dname="Contact1">Contact_Sensor</device>
+		<device Dname="Contact2">Contact_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Master Bedroom">
+		<device Dname="Thermostat">Thermostat</device>
+		<device Dname="Humidistat">Humidistat</device>
+		<device Dname="Contact1">Contact_Sensor</device>
+		<device Dname="Contact2">Contact_Sensor</device>
+		<device Dname="Contact3">Contact_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Garage">
+		<device Dname="Contact">Contact_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+	<room rName = "Kitchen">
+	    <device Dname="Contact">Contact_Sensor</device>
+		<device Dname="Light">Light</device>
+		<device Dname="PowerOutlet">Power_Outlet</device>
+	</room>
+</Home>		
