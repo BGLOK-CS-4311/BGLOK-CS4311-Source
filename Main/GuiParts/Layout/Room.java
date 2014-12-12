@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import javax.swing.JPanel;
+
 import Hardware.Hardware;
 
 public class Room {
 	String roomName;
 	List<Device> devList = new ArrayList<Device>();
+	JPanel roomPanel;
 	
 	Room(String name) {
 		roomName = name;
@@ -40,5 +43,13 @@ public class Room {
 	
 	public List<Device> getDevices() {
 		return devList;
+	}
+	
+	public void setPanel(JPanel p){
+		roomPanel = p;
+	}
+	
+	public JPanel getJPanel(){
+		return roomPanel;
 	}
 }

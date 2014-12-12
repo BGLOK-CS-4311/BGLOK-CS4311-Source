@@ -17,7 +17,7 @@ public class SimClock implements Runnable{
 	static Calendar calendar;
 	static Boolean isRunning;
 	static Thread thread, t;
-	static int speed;
+	static int speed = 1;
 	final int sec = 1000;
 	private ArrayList listeners = new ArrayList();
 	
@@ -43,8 +43,20 @@ public class SimClock implements Runnable{
 				System.out.println("Simulator was paused ");
 				return;
 			}
-			calendar.add(Calendar.SECOND, 1);
+			getSpeed();
 			fireEvent(new ClockEvent(this));
+		}
+	}
+	
+	private void getSpeed(){
+		if(speed == 0){
+			calendar.add(Calendar.SECOND, 1);
+		} else if(speed == 1){
+			calendar.add(Calendar.MINUTE, 1);
+		} else if (speed == 2){
+			calendar.add(Calendar.HOUR, 1);
+		} else if (speed == 3){
+			calendar.add(Calendar.DATE, 1);
 		}
 	}
 	
@@ -85,7 +97,7 @@ public class SimClock implements Runnable{
 		listeners.add(l);
 	}
 	
-	interface ClockListener extends EventListener {
+	public interface ClockListener extends EventListener {
 		void clockChange(ClockEvent e);
 	}
 }

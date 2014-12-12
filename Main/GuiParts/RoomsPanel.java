@@ -21,7 +21,7 @@ import Main.GuiParts.Layout.Home;
 import Main.GuiParts.Layout.ReadLayout;
 import Main.GuiParts.Layout.Room;
 
-public class RoomsPanel extends JPanel implements Commands {
+public class RoomsPanel extends JPanel implements Commands{
 	private static final long serialVersionUID = 1L;
 	static JPanel panel = new JPanel();
 	Home home = new Home();
@@ -46,25 +46,24 @@ public class RoomsPanel extends JPanel implements Commands {
 		
 		while(iterRoom.hasNext()) {
 			Room tempRoom = iterRoom.next();
+			String roomName = tempRoom.getName();
+			
 			JPanel roomPanel = new JPanel();
 			roomPanel.setLayout(new BoxLayout(roomPanel, BoxLayout.PAGE_AXIS));
-			//roomPanel.setBorder(BorderFactory.createMatteBorder(3,3,3,3, Color.GRAY));
-			roomPanel.setVisible(true);
-			
-			String roomName = tempRoom.getName();
 			TitledBorder titleBorder = new TitledBorder(roomName);
 			titleBorder.setTitleFont(BOLD);
 			roomPanel.setBorder(titleBorder);
+			//roomPanel.setBorder(BorderFactory.createMatteBorder(3,3,3,3, Color.GRAY));
+			roomPanel.setVisible(true);
 			
 			List<Device> devList = tempRoom.getDevices();
 			Iterator<Device> iterD = devList.iterator();
 			while(iterD.hasNext()){
 				Device device = iterD.next();
-				String dev = device.getName();
-				JLabel devLbl = new JLabel(dev);
-				devLbl.setFont(FONT);
+				JLabel devLbl = device.getLabel();
 				roomPanel.add(devLbl);
 			}
+			tempRoom.setPanel(roomPanel);
 			panel.add(roomPanel);
 		}
 	}

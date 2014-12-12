@@ -3,7 +3,11 @@ package Main.GuiParts.Layout;
 import Hardware.Hardware;
 import Main.Commands;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -17,14 +21,14 @@ public class ReadLayout implements Commands{
 	Home home = new Home();
 
 	public ReadLayout(){
-		//file = new File(LAYOUT);
+		//File file = new File(LAYOUT);
 		final String dir = System.getProperty("user.dir");
-		File file = new File(dir + LAYOUT);
+		File fileIn = new File(dir + LAYOUT);
 
 		try {
 			DocumentBuilderFactory dFactory = DocumentBuilderFactory.newInstance();
 			DocumentBuilder dBuild = dFactory.newDocumentBuilder();
-			Document doc = dBuild.parse(file);
+			Document doc = dBuild.parse(fileIn);
 
 			//Puts the text nodes together 
 			doc.getDocumentElement().normalize();
@@ -54,7 +58,7 @@ public class ReadLayout implements Commands{
 							String devName = devE.getAttribute("Dname");
 							String devType = devE.getTextContent();
 							//System.out.println("\t" + devName + ", " + devType);
-							Class <?> hardware = Class.forName("Hardware." + devType);
+							Class<?> hardware = Class.forName("Hardware." + devType);
 							home.addDevice(devName, hardware);
 						}
 					}
