@@ -20,11 +20,7 @@ public interface Commands {
 	String LATER_DATE = "Please use today's date or a future date.\n"
 			+ "Today's date will be set for you.";
 	String INVALID_START = "Invalid Starting Point";
-			
-	//Image names
-	String FLOORPLAN = "/res/floorplan.jpg";
-	String START_IMG = "/res/start.png";
-	String PAUSE_IMG = "/res/pause.png";
+
 
 	//Slider speed Strings
 	String SECS = "realtime";
@@ -40,6 +36,14 @@ public interface Commands {
 	//Display
 	Color GRAY = new Color(80,80,80);
 	Color WHITE = Color.WHITE;
-	Font FONT = new Font("Arial", Font.PLAIN, 12);
-	 
+	Font FONT = new Font("Dialog", Font.BOLD, 12);
+	Font BOLD = new Font("Arial", Font.BOLD, 16);
+	
+	//Image names
+	String FLOORPLAN = "/res/floorplan.png";
+	String START_IMG = "/res/start.png";
+	String PAUSE_IMG = "/res/pause.png";
+
+	//File names
+	String LAYOUT = "/res/layout.xml";
 }

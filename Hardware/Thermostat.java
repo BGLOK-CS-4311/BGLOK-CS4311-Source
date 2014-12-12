@@ -32,7 +32,7 @@ public class Thermostat extends Hardware {
 		if(hardware == null){
 			System.out.println("Hardware object cannot be null, please retry");
 		}
-		if(status.eqaul("") || status == null){
+		if(status.equals("") || status == null){
 			System.out.println("The status cannont be null, please re enter the status");
 		}
 		else{
@@ -56,7 +56,7 @@ public class Thermostat extends Hardware {
 	 * @ensures \result == (tempIncreaseVal || tempDecreaseVal)
 	 */
 	public int changeTemperature(int desiredTemp){
-		if(desiredTemp < 50 || desieredTemp > 80){
+		if(desiredTemp < 50 || desiredTemp > 80){
 			System.out.println("The desired temperature is not within the appropraite range of "
 				+"a low 50 degrees and a high of 80 degress. Please re enter your temperature");
 			return 0;

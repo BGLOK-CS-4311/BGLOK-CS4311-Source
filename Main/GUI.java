@@ -7,6 +7,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
@@ -31,9 +32,9 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 import Main.GuiParts.ClockDisplay;
 import Main.GuiParts.DatePicker;
-import Main.GuiParts.HomePanel;
 import Main.GuiParts.MyActionListener;
 import Main.GuiParts.MyChangeListener;
+import Main.GuiParts.RoomsPanel;
 import Main.GuiParts.TimePicker;
 
 public class GUI extends JFrame implements Commands{
@@ -50,9 +51,11 @@ public class GUI extends JFrame implements Commands{
 	
 	TimePicker timePicker = new TimePicker();
 	ClockDisplay clock;
+	RoomsPanel roomsPanel;
 		
 	public GUI() {
 		clock = new ClockDisplay(Controller.getClock());
+		roomsPanel = new RoomsPanel();
 		
 		ctrlPanelSetup();
 		homePanelSetup();
@@ -86,7 +89,7 @@ public class GUI extends JFrame implements Commands{
 		
 		frame.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		//frame.setExtendedState(JFrame.MAXIMIZED_BOTH);	//Comment out during debugging
-		frame.setSize(new Dimension(800, 400));				//Un-comment during debugging
+		frame.setSize(new Dimension(800, 600));				//Un-comment during debugging
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 	}
@@ -163,12 +166,12 @@ public class GUI extends JFrame implements Commands{
 	}
 	
 	void homePanelSetup() {
-		homePanel.setSize(new Dimension(300,300));
-		homePanel.setBackground(Color.WHITE);
+		homePanel.setLayout(new GridLayout(0,1,50,50));
+		homePanel.setBorder(BorderFactory.createMatteBorder(10,10,10,10, Color.GRAY));
+		homePanel.setBackground(Color.BLACK);
+		//homePanel.add(addImage(FLOORPLAN));
+		homePanel.add(roomsPanel.get());
 		homePanel.setVisible(true);
-		homePanel.add(addImage(FLOORPLAN));
-		//homeInfo = HomePanel.get();
-		//homePanel.add(homeInfo);
 	}
 	
 	/**

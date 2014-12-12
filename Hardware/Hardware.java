@@ -18,11 +18,11 @@ public abstract class Hardware {
 	private ArrayList<String> hardwareList = new ArrayList<String>();//the list of all the hardware connected to the system
 	
 	private String hardware;
-	private String status;
+	protected String status;
 	private int ipaddress;
 	private boolean registerd;
-	private String failurel
-	Database_Accessor dbQuery = new Database_Accessor();
+	private String failurel;
+	//Database_Accessor dbQuery = new Database_Accessor();
 
 	
 
@@ -165,8 +165,8 @@ public abstract class Hardware {
 		}
 		else{
 			//getting the ip address of the hardware object
-			String results = dbQuery.retrieveDate("Hardware", "IPAddress", hardware.ipaddress);
-			System.out.println("IPAddress is " + results);
+			//String results = dbQuery.retrieveDate("Hardware", "IPAddress", hardware.ipaddress);
+			//System.out.println("IPAddress is " + results);
 		}
 
 	}
@@ -177,7 +177,7 @@ public abstract class Hardware {
 			System.out.println("Hardware Item must be known, please retry");
 		}//end if
 		else{
-			String results = dbQuery.storeData("Hardware","Failures", hardware.failure);
+			//String results = dbQuery.storeData("Hardware","Failures", hardware.failure);
 			System.out.println("Failure has been logged");
 		}//end else
 	}

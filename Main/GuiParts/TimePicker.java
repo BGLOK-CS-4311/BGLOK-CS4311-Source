@@ -15,9 +15,11 @@ import javax.swing.SpinnerDateModel;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
+import Main.Commands;
+
 public class TimePicker 
 	extends CalendarSelection 
-	implements ActionListener, ChangeListener{
+	implements ActionListener, ChangeListener, Commands{
 	
 	private JPanel panel = new JPanel();
 	private SpinnerDateModel hrModel = new SpinnerDateModel();
@@ -36,7 +38,7 @@ public class TimePicker
 	private int hr;
 	private int min;
 	
-	public TimePicker(){
+	public TimePicker() {
 		GridLayout grid = new GridLayout(2,3);
 		panel.setLayout(grid);
 	
@@ -47,8 +49,14 @@ public class TimePicker
 		button = new JButton(am_pm);
 		button.addActionListener(this);
 		
-		panel.add(new JLabel("Hr"));
-		panel.add(new JLabel("Min"));
+		JLabel hrLbl = new JLabel("Hour");
+		hrLbl.setFont(FONT);
+		panel.add(hrLbl);
+		
+		JLabel minLbl = new JLabel("Min");
+		minLbl.setFont(FONT);
+		panel.add(minLbl);
+		
 		panel.add(new JLabel(" "));		//Placeholder.
 		
 		panel.add(hrSpinner);
